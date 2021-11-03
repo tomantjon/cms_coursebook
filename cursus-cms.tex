@@ -1,0 +1,90 @@
+% !TeX root = ./cursus-cms.tex
+%=============================================================================
+% Cursus Content Management Systems HOGENT toegepaste informatica
+%=============================================================================
+
+\documentclass{hogent-report}
+
+%-----------------------------------------------------------------------------
+% Packages en instellingen specifiek voor dit document
+%-----------------------------------------------------------------------------
+
+%% Titelpagina
+\usepackage{hogent-titlepage-image}
+
+%% Figuren
+\usepackage{pgfplotstable}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.13}
+\usetikzlibrary{arrows,shapes,backgrounds,positioning,shadows}
+\usetikzlibrary{pgfplots.statistics}
+
+\pgfmathdeclarefunction{gauss}{2}{%
+    \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
+}
+
+%% Tabellen uitlijnen op decimaalteken:
+\usepackage[output-decimal-marker={,}]{siunitx}
+
+%% Titel
+\title{Content~\\Management~\\Systems}
+\author{Tom Antjon}
+\date{Academiejaar 2021-2022}
+
+\hypersetup{
+    pdftitle={\thetitle},
+    pdfauthor={\theauthor}
+}
+
+\begin{document}
+
+    \inserttitlepage{achtergrond-ozt.png}
+
+    %-----------------------------------------------------------------------------
+    % Copyright
+    %-----------------------------------------------------------------------------
+
+    \newpage
+
+    \thispagestyle{empty}
+
+    \vspace*{20cm}
+
+    \noindent Copyright \copyright\ 2015-{\the\year} Jens Buysse % Copyright notice
+
+    \noindent \textsc{www.hogent.be} % URL
+
+    \noindent \textit{Gegenereerd op \today} % Printing/edition date
+
+    %-----------------------------------------------------------------------------
+    % Inhoudstafel
+    %-----------------------------------------------------------------------------
+
+    \usechapterimagefalse
+    \tableofcontents % Print the table of contents itself
+
+    \cleardoublepage % Forces the first chapter to start on an odd page so it's on the right
+
+    \def\R{\mathbb{R}}
+
+    %-----------------------------------------------------------------------------
+    % Corpus
+    %-----------------------------------------------------------------------------
+
+    \include{1_intro}
+
+
+    \begin{appendices}
+        %\include{logistic}
+
+
+        \clearpage
+        \addcontentsline{toc}{chapter}{\textcolor{maincolor}{\IfLanguageName{dutch}{Bibliografie}{Bibliography}}}
+        \printbibliography
+
+        \clearpage
+        \addcontentsline{toc}{chapter}{\textcolor{maincolor}{Index}}
+        \printindex
+
+    \end{appendices}
+\end{document}

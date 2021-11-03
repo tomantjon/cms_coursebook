@@ -16,7 +16,7 @@
 %   CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
 %===============================================================================
 
-\ProvidesClass{hogent-report}[2019/01/22 Bachelorproef HOGENT toegepaste informatica (Montserrat)]
+\ProvidesClass{hogent-report}[2019/01/09 Rapport HOGENT toegepaste informatica]
 \NeedsTeXFormat{LaTeX2e}
 
 % Overerven van de ``book''-klasse
@@ -32,11 +32,13 @@
 \setlength{\parindent}{0em} % Eerste regel niet inspringen
 \setlength{\parskip}{1em}   % Ruimte tussen paragrafen laten
 \RequirePackage{enumitem}   % Vormgeving lijsten aanpassen
-%\setlist{nolistsep}         % Geen ruimte tussen elementen in een lijst
+\setlist{nolistsep}         % Geen ruimte tussen elementen in een lijst
 
 \RequirePackage{booktabs}   % Mooier opgemaakte tabellen
 \RequirePackage{multirow}   % Cellen in tabellen samenvoegen
 \RequirePackage{rotating}   % Tabellen en figuren roteren
+\RequirePackage[margin=20pt,font=small,labelfont=bf,textfont=it]{caption}
+\RequirePackage{subcaption}
 
 \RequirePackage{listings}   % Broncode mooi opmaken
 
@@ -44,24 +46,23 @@
 \graphicspath{{img/}}       % Map met in te voegen afbeeldingen
 \RequirePackage{tikz}       % Grafische taal voor maken van afbeeldingen
 
+\RequirePackage[toc]{appendix}  % Appendixes
+
 %-------------------------------------------------------------------------------
 % Lettertypes, bestandscodering
 %-------------------------------------------------------------------------------
 
-\RequirePackage{fontspec}
-
-\setsansfont{Montserrat}[
-BoldFont={Montserrat ExtraBold},
-ItalicFont={Montserrat Italic},
-BoldItalicFont={Montserrat Bold Italic}
-]
-\setmathrm{Montserrat}
-\setmonofont{Fira Code}
-\setmainfont{Montserrat}
-
+\RequirePackage[utf8]{inputenc}  % Accenten gebruiken in tekst (vb. é ipv \'e)
+\RequirePackage[T1]{fontenc}     % Gebruik modernere 8-bit fonts met 256 tekens
 \RequirePackage{amsfonts}        % AMS math packages: extra wiskundige
 \RequirePackage{amsmath}         %   symbolen (o.a. getallen-
 \RequirePackage{amssymb}         %   verzamelingen N, R, Z, Q, etc.)
+
+\RequirePackage{avant}           % Gebruik Avantgarde voor titels
+\RequirePackage{mathptmx}        % Gebruik Adobe Times Roman als basislettertype
+                                 % met ondersteuning voor wiskundige symbolen
+
+\RequirePackage{microtype}       % Verbeteringen voor typografische perfectie
 
 %-------------------------------------------------------------------------------
 % Taal, lokalisatie
@@ -78,10 +79,6 @@ BoldItalicFont={Montserrat Bold Italic}
 
 \RequirePackage{xcolor}
 
-% Bepaal de hoofdkleur doorheen heel het document
-\definecolor{maincolor}{RGB}{0,147,208}
-% 0, 147, 208 = officiële kleur HoGent FBO
-
 % HOGENT huisstijlkleuren
 % Bron: https://hnet.hogent.be/themas/communicatie/huisstijl-logo-s-en-sjablonen/kleurgebruik/
 \definecolor{hgdarkgreen}{RGB}{22,176,165}
@@ -94,6 +91,9 @@ BoldItalicFont={Montserrat Bold Italic}
 \definecolor{hgbrown}{RGB}{216,176,131}
 \definecolor{hggrey}{RGB}{195,187,175}
 \definecolor{hgyellow}{RGB}{244,222,0}
+
+% Bepaal de hoofdkleur doorheen heel het document
+\definecolor{maincolor}{RGB}{76,162,213}
 
 %-------------------------------------------------------------------------------
 % Inhoudstafel
@@ -211,6 +211,7 @@ BoldItalicFont={Montserrat Bold Italic}
   \thispagestyle{empty}
   \newpage
   \fi}
+
 
 %-------------------------------------------------------------------------------
 % Stijl voor wiskundige stellingen & bewijzen/voorbeelden/...
@@ -561,7 +562,13 @@ topline=false
 %-------------------------------------------------------------------------------
 
 \RequirePackage{hyperref}
-\hypersetup{hidelinks,colorlinks=false,breaklinks=true,urlcolor=maincolor,bookmarksopen=false}
+\hypersetup{%
+  hidelinks,
+  colorlinks=false,
+  breaklinks=true,
+  urlcolor=maincolor,
+  bookmarksopen=false
+}
 
 \RequirePackage{bookmark}
 \bookmarksetup{
